@@ -219,12 +219,12 @@ const DequeVisualizer: React.FC = () => {
               {deque.length === 0 ? (
                 <p className="text-gray-500 italic">Deque is empty. Add elements to visualize.</p>
               ) : (
-                <div className="w-full">
-                  <div className="flex w-full justify-between mb-4">
+                <div className="w-full flex flex-col items-center">
+                  <div className="flex w-full max-w-md justify-between mb-4">
                     <div className="text-sm font-semibold text-arena-red">FRONT</div>
                     <div className="text-sm font-semibold text-arena-red">REAR</div>
                   </div>
-                  <div className="flex w-full justify-between">
+                  <div className="flex justify-center gap-4 w-full">
                     {deque.map((item, idx) => (
                       <div
                         key={idx}
@@ -276,7 +276,7 @@ const DequeVisualizer: React.FC = () => {
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-base font-semibold mb-2">Front Element:</h3>
+                  <h3 className="text-base font-semibold mb-2">Front:</h3>
                   <div className="bg-arena-lightgray rounded-lg p-3 text-center">
                     <span className="text-lg font-mono">
                       {deque.length > 0 ? deque[0] : 'None'}
@@ -284,7 +284,7 @@ const DequeVisualizer: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold mb-2">Rear Element:</h3>
+                  <h3 className="text-base font-semibold mb-2">Rear:</h3>
                   <div className="bg-arena-lightgray rounded-lg p-3 text-center">
                     <span className="text-lg font-mono">
                       {deque.length > 0 ? deque[deque.length - 1] : 'None'}
@@ -301,13 +301,12 @@ const DequeVisualizer: React.FC = () => {
                     <li><strong>Add Rear:</strong> Add an element to the rear</li>
                     <li><strong>Remove Front:</strong> Remove the front element</li>
                     <li><strong>Remove Rear:</strong> Remove the rear element</li>
-                    <li><strong>Double-ended:</strong> Elements can be added/removed from both ends</li>
                   </ul>
                 </div>
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold mb-2">Message Box</h3>
+                <h3 className="text-lg font-semibold mb-2">Last Message</h3>
                 <div className="bg-arena-lightgray rounded-lg p-4">
                   <p>
                     {messages.length > 0

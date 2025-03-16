@@ -294,7 +294,7 @@ const LinkedListVisualizer: React.FC = () => {
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold mb-2">Message Box</h3>
+                <h3 className="text-lg font-semibold mb-2">Last Message</h3>
                 <div className="bg-arena-lightgray rounded-lg p-4">
                   <p>
                     {messages.length > 0

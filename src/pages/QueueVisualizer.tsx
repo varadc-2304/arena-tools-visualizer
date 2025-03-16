@@ -151,7 +151,7 @@ const QueueVisualizer: React.FC = () => {
                     <div className="text-sm font-semibold text-arena-red">FRONT (Dequeue)</div>
                     <div className="text-sm font-semibold text-arena-red">REAR (Enqueue)</div>
                   </div>
-                  <div className="flex w-full max-w-md justify-between">
+                  <div className="flex justify-center gap-4 w-full">
                     {queue.map((item, idx) => (
                       <div
                         key={idx}
@@ -214,8 +214,8 @@ const QueueVisualizer: React.FC = () => {
                 <h3 className="text-lg font-semibold mb-2">Queue Operations:</h3>
                 <div className="bg-arena-lightgray rounded-lg p-4">
                   <ul className="list-disc list-inside space-y-2 text-sm">
-                    <li><strong>Enqueue:</strong> Add an element to the rear of the queue</li>
-                    <li><strong>Dequeue:</strong> Remove the front element from the queue</li>
+                    <li><strong>Enqueue:</strong> Add an element to the rear</li>
+                    <li><strong>Dequeue:</strong> Remove the front element</li>
                     <li><strong>Peek:</strong> View the front element without removing it</li>
                     <li><strong>FIFO:</strong> First In, First Out principle</li>
                   </ul>
@@ -223,7 +223,7 @@ const QueueVisualizer: React.FC = () => {
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold mb-2">Message Box</h3>
+                <h3 className="text-lg font-semibold mb-2">Last Message</h3>
                 <div className="bg-arena-lightgray rounded-lg p-4">
                   <p>
                     {messages.length > 0
