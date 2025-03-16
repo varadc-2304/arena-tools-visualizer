@@ -67,10 +67,8 @@ const LinkedListVisualizer: React.FC = () => {
     setHead(result.newHead);
     addMessage(result.message);
     setActiveValue(value);
+    setValue(''); // Reset input
     setTimeout(() => setActiveValue(null), 2000);
-    
-    // Reset input
-    setValue('');
   };
   
   const handlePrepend = () => {
@@ -87,10 +85,8 @@ const LinkedListVisualizer: React.FC = () => {
     setHead(result.newHead);
     addMessage(result.message);
     setActiveValue(value);
+    setValue(''); // Reset input
     setTimeout(() => setActiveValue(null), 2000);
-    
-    // Reset input
-    setValue('');
   };
   
   const handleRemove = () => {
@@ -107,10 +103,8 @@ const LinkedListVisualizer: React.FC = () => {
     setHead(result.newHead);
     addMessage(result.message);
     setActiveValue(value);
+    setValue(''); // Reset input
     setTimeout(() => setActiveValue(null), 2000);
-    
-    // Reset input
-    setValue('');
   };
   
   const handleSearch = () => {
@@ -125,10 +119,8 @@ const LinkedListVisualizer: React.FC = () => {
     const result = searchLinkedList(head, value);
     addMessage(result.message);
     setActiveValue(value);
+    setValue(''); // Reset input
     setTimeout(() => setActiveValue(null), 2000);
-    
-    // Reset input
-    setValue('');
   };
   
   const handleReset = () => {

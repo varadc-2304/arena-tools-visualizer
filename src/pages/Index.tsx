@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Layers, ListOrdered, AlignJustify, Link2, Shuffle } from 'lucide-react';
+import { Layers, ListOrdered, AlignJustify, Link2, Shuffle, GitBranch, GitFork, Package, Share2 } from 'lucide-react';
 import DataCard from '@/components/DataCard';
 
 const Index = () => {
@@ -9,7 +9,7 @@ const Index = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-arena-darkgray">
-            Arena<span className="text-arena-red">Tools</span> DS
+            <span className="text-arena-red">Arena</span>Tools
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
             Interactive visualizations to help you understand how data structures work
@@ -55,6 +55,38 @@ const Index = () => {
             icon={<Shuffle className="w-8 h-8" />}
             route="/deque"
             delay={500}
+          />
+          
+          <DataCard
+            title="Tree"
+            description="A hierarchical structure with a root node and child nodes, used for organizing hierarchical data."
+            icon={<GitBranch className="w-8 h-8" />}
+            route="/tree"
+            delay={600}
+          />
+          
+          <DataCard
+            title="BST"
+            description="A binary tree where each node has at most two children and the left subtree values are less than the node's value, right subtree values are greater."
+            icon={<GitFork className="w-8 h-8" />}
+            route="/bst"
+            delay={700}
+          />
+          
+          <DataCard
+            title="Heap"
+            description="A specialized tree-based data structure that satisfies the heap property, commonly used for priority queues."
+            icon={<Package className="w-8 h-8" />}
+            route="/heap"
+            delay={800}
+          />
+          
+          <DataCard
+            title="Graph"
+            description="A collection of nodes (vertices) connected by edges, representing relationships between objects."
+            icon={<Share2 className="w-8 h-8" />}
+            route="/graph"
+            delay={900}
           />
         </div>
         

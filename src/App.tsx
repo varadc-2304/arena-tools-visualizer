@@ -11,6 +11,10 @@ import StackVisualizer from "./pages/StackVisualizer";
 import QueueVisualizer from "./pages/QueueVisualizer";
 import LinkedListVisualizer from "./pages/LinkedListVisualizer";
 import DequeVisualizer from "./pages/DequeVisualizer";
+import TreeVisualizer from "./pages/TreeVisualizer";
+import BSTVisualizer from "./pages/BSTVisualizer";
+import HeapVisualizer from "./pages/HeapVisualizer";
+import GraphVisualizer from "./pages/GraphVisualizer";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +33,10 @@ const App = () => (
           <Route path="/queue" element={<QueueVisualizer />} />
           <Route path="/linked-list" element={<LinkedListVisualizer />} />
           <Route path="/deque" element={<DequeVisualizer />} />
+          <Route path="/tree" element={<TreeVisualizer />} />
+          <Route path="/bst" element={<BSTVisualizer />} />
+          <Route path="/heap" element={<HeapVisualizer />} />
+          <Route path="/graph" element={<GraphVisualizer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

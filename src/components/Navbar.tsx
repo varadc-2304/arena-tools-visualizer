@@ -36,6 +36,10 @@ const Navbar: React.FC = () => {
     { name: 'Queue', path: '/queue' },
     { name: 'Linked List', path: '/linked-list' },
     { name: 'Deque', path: '/deque' },
+    { name: 'Tree', path: '/tree' },
+    { name: 'BST', path: '/bst' },
+    { name: 'Heap', path: '/heap' },
+    { name: 'Graph', path: '/graph' },
   ];
 
   return (
@@ -48,7 +52,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-arena-red">ArenaTools<span className="text-arena-darkgray">DS</span></span>
+              <span className="text-2xl font-bold text-arena-red">ArenaTools</span>
             </Link>
           </div>
           
@@ -90,7 +94,7 @@ const Navbar: React.FC = () => {
       >
         <div className="p-4 flex items-center justify-between">
           <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex items-center">
-            <span className="text-2xl font-bold text-arena-red">ArenaTools<span className="text-arena-darkgray">DS</span></span>
+            <span className="text-2xl font-bold text-arena-red">ArenaTools</span>
           </Link>
           <button
             onClick={toggleMenu}
