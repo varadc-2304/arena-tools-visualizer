@@ -140,32 +140,79 @@ const TreeVisualizer: React.FC = () => {
     });
   };
 
-  const renderTreeNode = (node: TreeNode, level: number = 0) => {
+  // Calculate the width needed for the tree visualization
+  const calculateTreeWidth = (node: TreeNode | null): number => {
+    if (!node) return 0;
+    if (node.children.length === 0) return 1;
+    
+    let totalWidth = 0;
+    for (const child of node.children) {
+      totalWidth += calculateTreeWidth(child);
+    }
+    
+    return Math.max(1, totalWidth);
+  };
+
+  const treeWidth = root ? calculateTreeWidth(root) * 80 : 0;
+  const svgWidth = Math.max(600, treeWidth);
+  
+  const renderTreeNode = (node: TreeNode, x: number, y: number, level: number = 0, totalWidth: number = svgWidth, indexInLevel: number = 0, totalInLevel: number = 1) => {
     const isActive = node.value === activeNode;
+    const nodeWidth = totalWidth / totalInLevel;
+    const nodeX = x + (indexInLevel * nodeWidth) + (nodeWidth / 2);
     
     return (
-      <div key={`${node.value}-${level}`} className="flex flex-col items-center">
-        <div
-          className={`ds-visualizer-block rounded-full ${
-            isActive ? 'ds-visualizer-block-active' : ''
-          }`}
+      <g key={`${node.value}-${level}-${indexInLevel}`}>
+        {/* Draw node */}
+        <circle
+          cx={nodeX}
+          cy={y}
+          r={20}
+          fill={isActive ? "#f87171" : "#ef4444"}
+          stroke="#991b1b"
+          strokeWidth="2"
+        />
+        <text
+          x={nodeX}
+          y={y + 5}
+          textAnchor="middle"
+          fill="white"
+          fontWeight="bold"
+          fontSize="14"
         >
-          <span className="font-mono">{node.value}</span>
-        </div>
+          {node.value}
+        </text>
         
+        {/* Draw lines to children and render children */}
         {node.children.length > 0 && (
-          <div className="mt-2">
-            <div className="w-0.5 h-4 bg-gray-400 mx-auto"></div>
-            <div className="flex items-start space-x-6 mt-1">
-              {node.children.map((child, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  {renderTreeNode(child, level + 1)}
-                </div>
-              ))}
-            </div>
-          </div>
+          <>
+            {node.children.map((child, idx) => (
+              <line
+                key={`line-${node.value}-${child.value}`}
+                x1={nodeX}
+                y1={y + 20}
+                x2={nodeX - ((node.children.length - 1) * 50 / 2) + (idx * 50)}
+                y2={y + 60}
+                stroke="#6b7280"
+                strokeWidth="1.5"
+              />
+            ))}
+            <g>
+              {node.children.map((child, idx) => 
+                renderTreeNode(
+                  child, 
+                  x, 
+                  y + 80, 
+                  level + 1, 
+                  totalWidth, 
+                  indexInLevel * totalInLevel + idx, 
+                  totalInLevel * node.children.length
+                )
+              )}
+            </g>
+          </>
         )}
-      </div>
+      </g>
     );
   };
 
@@ -234,12 +281,18 @@ const TreeVisualizer: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <h3 className="text-lg font-semibold mb-2">Tree Visualization:</h3>
-            <div className="border border-gray-200 rounded-xl p-8 min-h-64 flex items-center justify-center">
+            <div className="border border-gray-200 rounded-xl p-4 min-h-64 overflow-auto">
               {!root ? (
-                <p className="text-gray-500 italic">Tree is empty. Add a root node to visualize.</p>
+                <div className="flex items-center justify-center h-64">
+                  <p className="text-gray-500 italic">Tree is empty. Add a root node to visualize.</p>
+                </div>
               ) : (
-                <div className="flex flex-col items-center">
-                  {renderTreeNode(root)}
+                <div className="flex items-center justify-center">
+                  <div className="overflow-auto" style={{ maxWidth: '100%', maxHeight: '500px' }}>
+                    <svg width={svgWidth} height="400" className="mx-auto">
+                      {renderTreeNode(root, 0, 40, 0)}
+                    </svg>
+                  </div>
                 </div>
               )}
             </div>

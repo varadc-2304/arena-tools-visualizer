@@ -209,7 +209,7 @@ const LinkedListVisualizer: React.FC = () => {
                       Head
                     </div>
                   </div>
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center overflow-auto py-4">
                     {linkedListArray.map((item, idx) => (
                       <React.Fragment key={idx}>
                         <div 
