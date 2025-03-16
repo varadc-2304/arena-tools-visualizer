@@ -31,15 +31,6 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Array', path: '/array' },
-    { name: 'Stack', path: '/stack' },
-    { name: 'Queue', path: '/queue' },
-    { name: 'Linked List', path: '/linked-list' },
-    { name: 'Deque', path: '/deque' },
-    { name: 'Tree', path: '/tree' },
-    { name: 'BST', path: '/bst' },
-    { name: 'Heap', path: '/heap' },
-    { name: 'Graph', path: '/graph' },
   ];
 
   return (

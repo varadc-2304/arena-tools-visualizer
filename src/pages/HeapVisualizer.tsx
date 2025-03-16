@@ -189,12 +189,14 @@ const HeapVisualizer: React.FC = () => {
   };
 
   const heapHeight = getHeapHeight(heap.length);
-  const svgWidth = 600;
-  const svgHeight = heapHeight * 80 + 40;
+  // Adjust width and height based on the heap size
+  const svgWidth = Math.max(600, heapHeight * 150);
+  const svgHeight = Math.max(300, heapHeight * 100);
 
   const renderHeapNode = (index: number, x: number, y: number, level: number, maxWidth: number) => {
     if (index >= heap.length) return null;
     
+    // Adjust offset to better space nodes
     const offset = maxWidth / Math.pow(2, level + 1);
     const isActive = index === activeIndex;
     
@@ -318,9 +320,11 @@ const HeapVisualizer: React.FC = () => {
                 </div>
               ) : (
                 <div className="flex items-center justify-center">
-                  <svg width={svgWidth} height={svgHeight} className="mx-auto">
-                    {renderHeapNode(0, svgWidth / 2, 40, 0, svgWidth - 40)}
-                  </svg>
+                  <div className="overflow-auto" style={{ maxWidth: '100%', maxHeight: '500px' }}>
+                    <svg width={svgWidth} height={svgHeight} className="mx-auto">
+                      {renderHeapNode(0, svgWidth / 2, 40, 0, svgWidth - 80)}
+                    </svg>
+                  </div>
                 </div>
               )}
             </div>

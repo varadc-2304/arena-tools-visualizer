@@ -218,6 +218,17 @@ const BSTVisualizer: React.FC = () => {
     });
   };
 
+  // Calculate the height of the BST
+  const getHeight = (node: BSTNode | null): number => {
+    if (!node) return 0;
+    return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+  };
+
+  const bstHeight = getHeight(root);
+  // Adjust width and height based on the tree size
+  const svgWidth = Math.max(600, bstHeight * 120);
+  const svgHeight = Math.max(300, bstHeight * 120);
+
   const renderBSTNode = (
     node: BSTNode | null,
     x: number,
@@ -229,6 +240,7 @@ const BSTVisualizer: React.FC = () => {
   ) => {
     if (!node) return null;
     
+    // Adjust the offset to make nodes more spread out
     const offset = maxWidth / Math.pow(2, level + 1);
     const isActive = node.value === activeNode;
     
@@ -282,16 +294,6 @@ const BSTVisualizer: React.FC = () => {
       </g>
     );
   };
-
-  // Calculate the height of the BST
-  const getHeight = (node: BSTNode | null): number => {
-    if (!node) return 0;
-    return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
-  };
-
-  const bstHeight = getHeight(root);
-  const svgWidth = 600;
-  const svgHeight = bstHeight * 100 + 50;
 
   return (
     <div className="min-h-screen pt-20 pb-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -361,10 +363,12 @@ const BSTVisualizer: React.FC = () => {
                   <p className="text-gray-500 italic">BST is empty. Insert nodes to visualize.</p>
                 </div>
               ) : (
-                <div className="flex items-center justify-center">
-                  <svg width={svgWidth} height={svgHeight} className="mx-auto">
-                    {renderBSTNode(root, svgWidth / 2, 40, 0, svgWidth - 40)}
-                  </svg>
+                <div className="flex items-center justify-center overflow-auto">
+                  <div className="overflow-auto" style={{ maxWidth: '100%', maxHeight: '500px' }}>
+                    <svg width={svgWidth} height={svgHeight} className="mx-auto">
+                      {renderBSTNode(root, svgWidth / 2, 40, 0, svgWidth - 80)}
+                    </svg>
+                  </div>
                 </div>
               )}
             </div>
